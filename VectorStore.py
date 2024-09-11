@@ -66,5 +66,3 @@ class VectorStore:
         # Return the top N results
         return results[:num_results]
 
-
-
