@@ -1,4 +1,5 @@
 import numpy as np
+from Utility import dot
 
 
 class VectorStore:
@@ -57,7 +58,7 @@ class VectorStore:
         """
         results = []
         for vector_id, vector in self.vector_data.items():
-            similarity = np.dot(query_vector, vector) / (np.linalg.norm(query_vector) * np.linalg.norm(vector))
+            similarity = dot(query_vector, vector) / (np.linalg.norm(query_vector) * np.linalg.norm(vector))
             results.append((vector_id, similarity))
 
         # Sort by similarity in descending order
