@@ -1,5 +1,5 @@
-import numpy as np
 from Utility import dot
+from Utility import norm
 
 
 class VectorStore:
@@ -40,7 +40,7 @@ class VectorStore:
         """
         # In this simple example, we use brute-force cosine similarity for indexing
         for existing_id, existing_vector in self.vector_data.items():
-            similarity = np.dot(vector, existing_vector) / (np.linalg.norm(vector) * np.linalg.norm(existing_vector))
+            similarity = dot(vector, existing_vector) / (norm(vector) * norm(existing_vector))
             if existing_id not in self.vector_index:
                 self.vector_index[existing_id] = {}
             self.vector_index[existing_id][vector_id] = similarity
@@ -58,7 +58,7 @@ class VectorStore:
         """
         results = []
         for vector_id, vector in self.vector_data.items():
-            similarity = dot(query_vector, vector) / (np.linalg.norm(query_vector) * np.linalg.norm(vector))
+            similarity = dot(query_vector, vector) / (norm(query_vector) * norm(vector))
             results.append((vector_id, similarity))
 
         # Sort by similarity in descending order
