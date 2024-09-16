@@ -1,5 +1,5 @@
 from VectorStore import VectorStore
-import numpy as np
+from Utility import zeros
 
 # Create a VectorStore instance
 vector_store = VectorStore()
@@ -25,7 +25,7 @@ word_to_index = {word: i for i, word in enumerate(vocabulary)}
 sentence_vectors = {}
 for sentence in sentences:
     tokens = sentence.lower().split()
-    vector = np.zeros(len(vocabulary))
+    vector = zeros(len(vocabulary))
     for token in tokens:
         vector[word_to_index[token]] += 1
     sentence_vectors[sentence] = vector
@@ -36,7 +36,7 @@ for sentence, vector in sentence_vectors.items():
 
 # Searching for Similarity
 query_sentence = "Mango is the best fruit"
-query_vector = np.zeros(len(vocabulary))
+query_vector = zeros(len(vocabulary))
 query_tokens = query_sentence.lower().split()
 for token in query_tokens:
     if token in word_to_index:
