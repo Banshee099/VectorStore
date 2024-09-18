@@ -1,5 +1,6 @@
-from Utility import dot
-from Utility import norm
+from Utility import dot, norm
+from Similarity_Search import cosine_similarity
+
 
 
 class VectorStore:
@@ -58,7 +59,7 @@ class VectorStore:
         """
         results = []
         for vector_id, vector in self.vector_data.items():
-            similarity = dot(query_vector, vector) / (norm(query_vector) * norm(vector))
+            similarity = cosine_similarity(query_vector, vector)
             results.append((vector_id, similarity))
 
         # Sort by similarity in descending order
